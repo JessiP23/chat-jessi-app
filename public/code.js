@@ -1,3 +1,4 @@
+// code.js
 (function(){
 
     const app = document.querySelector(".app");
@@ -5,11 +6,22 @@
 
     let uname;
 
-    app.querySelector(".join-screen .join-user").addEventListener('click', function(){
-        let username = app.querySelector(".join-screen #username").value;
-        if(username.length == 0){
+    const usernameInput = document.getElementById('username');
+
+    // Update the selector to match the form id in your HTML
+    const joinForm = document.getElementById('joinForm');
+    
+    joinForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const username = usernameInput.value;
+
+        // Check if a username is provided
+        if (!username || username.trim() === "") {
+            alert("Please enter a valid username");
             return;
         }
+
         socket.emit("newuser", username);
         uname = username;
         app.querySelector(".join-screen").classList.remove('active');
@@ -34,7 +46,7 @@
 
     app.querySelector(".chat-screen #exit-chat").addEventListener("click", function(){
         socket.emit('exituser', uname);
-        window.location.href = window.location.href;
+        window.location.reload();
     });
 
     socket.on("update", function(update){
@@ -72,7 +84,6 @@
             el.innerText = message;
             messageContainer.appendChild(el);
         }
-        //scroll chat to end
         messageContainer.scrollTop = messageContainer.scrollHeight - messageContainer.clientHeight;
     }
 })();

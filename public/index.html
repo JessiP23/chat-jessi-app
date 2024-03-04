@@ -1,5 +1,6 @@
+<!-- index.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>Chat</title>
@@ -10,13 +11,16 @@
             <div class="screen join-screen active">
                 <div class="form">
                     <h2>Join Chatroom</h2>
-                    <div class="form input">
-                        <label>Username</label>
-                        <input type="text" id="username">
-                    </div>
-                    <div class="form-input">
-                        <button class="join-user">Join</button>
-                    </div>
+                    <!-- Add id="joinForm" to the form element -->
+                    <form id="joinForm">
+                        <div class="form input">
+                            <label>Username</label>
+                            <input type="text" id="username">
+                        </div>
+                        <div class="form-input">
+                            <button type="submit" class="join-user">Join</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="screen chat-screen">
@@ -30,8 +34,7 @@
                     <input type="text" id="message-input">
                     <button id="send-message">Send</button>
                 </div>
-            </div>
-            
+            </div>        
         </div>
         <script type="text/javascript" src="socket.io/socket.io.js"></script>
         <script type="text/javascript" src="code.js"></script>
