@@ -68,11 +68,11 @@ app.post('/login', async (req, res) => {
   
       if (!user || !(await bcrypt.compare(password, user.password))) {
         return res.status(401).json({ message: 'Invalid credentials' });
-      }
+      } 
   
       const token = jwt.sign({ user: { username } }, 'your_secret_key', { expiresIn: '1h' });
 
-      res.json({ token, redirect: '/chat', message: 'Login successful' });
+      res.json({ token, message: 'Login successful', username, redirect: '/chat' });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Error logging in' });
@@ -120,13 +120,14 @@ io.on('connection', async function(socket){
     socket.on("exituser", function(exitUsername){
         socket.broadcast.emit('update', exitUsername + " left the conversation");
     });
+
     socket.on('chat', async function(message){
         const { username, text, receiverUsername, receiverSocketId } = message;
 
         const newMessage = new Message({ sender: username, receiver: receiverUsername, text});
         await newMessage.save();
 
-        io.to(receiverSocketId).emit('chat', message);
+        io.emit('chat', message);
     });
 });
 
