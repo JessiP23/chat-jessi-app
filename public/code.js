@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function(){
             return;
         }
 
-        renderMessage('my', {
+        renderMessage('chat', {
             username: uname,
             text: message
         });
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function(){
             el.setAttribute("class", "message my-message");
             el.innerHTML = `
             <div>
-                <div class="name">You</div>
+                <div class="name">${senderUsername}</div>
                 <div class="text">${message.text}</div>
             </div>
             `;

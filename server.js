@@ -127,7 +127,12 @@ io.on('connection', async function(socket){
         const newMessage = new Message({ sender: username, receiver: receiverUsername, text});
         await newMessage.save();
 
-        io.emit('chat', message);
+        io.emit('chat', {
+            username, 
+            text,
+            receiverUsername,
+            receiverSocketId,
+        });
     });
 });
 

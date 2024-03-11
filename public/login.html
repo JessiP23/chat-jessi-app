@@ -1,4 +1,3 @@
-<!-- login.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -40,6 +39,7 @@
                     alert(data.message);
 
                     if(data.redirect){
+                        localStorage.setItem('username', username);
                         window.location.href = data.redirect;
                     } else{
                         console.error('Redirect path not provided by the server.');
