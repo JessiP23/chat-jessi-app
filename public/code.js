@@ -10,7 +10,10 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     const welcomeMessage = document.getElementById("welcome-message");
-    welcomeMessage.innerText = `Welcome ${uname}`;
+    
+    if (welcomeMessage) {
+        welcomeMessage.innerText = `Welcome ${uname}`;
+    }
 
     const joinButton = document.querySelector('.joinButton');
     const joinScreen = app.querySelector(".join-screen");
@@ -25,42 +28,41 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 
-    app.querySelector('.chat-screen #send-message').addEventListener('click', function(){
-        let message = app.querySelector(".chat-screen #message-input").value;
-        if(message.length == 0){
-            return;
-        }
+    const sendMessageButton = app.querySelector('.chat-screen #send-message');
+    if (sendMessageButton){
+        sendMessageButton.addEventListener('click', function() {
+            let messageInput = app.querySelector(".chat-screen #message-input");
+            let message = messageInput.value.trim();
 
-        renderMessage('chat', {
-            username: uname,
-            text: message
+            if(message.length == 0){
+                return;
+            }
+
+            renderMessage('my', {
+                username: uname,
+                text: message,
+            });
+
+            socket.emit('chat', {
+                username: uname,
+                text: message,
+            });
+            
+            app.querySelector('.chat-screen #message-input').value = "";
         });
-
-        socket.emit('chat', {
-            username: uname,
-            text: message
-        });
-
-        app.querySelector('.chat-screen #message-input').value = "";
-    });
+    }
 
     app.querySelector(".chat-screen #exit-chat").addEventListener("click", function(){
-        // Emit the exituser event with the username
         socket.emit('exituser', uname);
 
-        // Reload the page
         window.location.reload();
     });
 
-    // Event listener for incoming chat messages
     socket.on("chat", function(message){
-        // Render the incoming message
         renderMessage("other", message);
     });
 
-    // Event listener for updates (join/exit messages)
     socket.on("update", function(update){
-        // Render the update message
         renderMessage("update", update);
     });
 
@@ -68,19 +70,9 @@ document.addEventListener('DOMContentLoaded', function(){
         let messageContainer = app.querySelector(".chat-screen .messages");
         const senderUsername = message.username;
 
-        if(type === "my"){
+        if(type === "my" || type === 'other'){
             let el = document.createElement('div');
-            el.setAttribute("class", "message my-message");
-            el.innerHTML = `
-            <div>
-                <div class="name">${senderUsername}</div>
-                <div class="text">${message.text}</div>
-            </div>
-            `;
-            messageContainer.appendChild(el);
-        } else if(type == "other"){
-            let el = document.createElement('div');
-            el.setAttribute("class", "message other-message");
+            el.setAttribute("class", `message ${type === 'my' ? 'my-message' : 'other-message'}`);
             el.innerHTML = `
             <div>
                 <div class="name">${senderUsername}</div>

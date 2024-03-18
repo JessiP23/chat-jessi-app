@@ -7,29 +7,26 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
+        <div>
+            <h2>Welcome to Paterson Cleaning Services</h2>
+            <p>Providing top-notch cleaning services with experienced staff, eco-friendly products, and exceptional results.</p>
+        </div>
         <div class="app">
             <div class="screen join-screen active">
                 <div class="form">
-                    <h2 id="welcome-message">Welcome</h2>
+                    <h2 class="welcome-message">Welcome</h2>
                     <div class="form-input">
-                        <button type="submit" class="joinButton">Join</button>
+                        <button type="submit" class= "joinButton" onclick="joinChat()">Join</button>
                     </div>
                 </div>
             </div>
-            <div class="screen chat-screen">
-                <div class="header">
-                    <div class="logo"> chatroom</div>
-                    <button id="exit-chat">Exit</button>
-                </div>
-                <div class="messages">
-                </div>
-                <div class="typebox">
-                    <input type="text" id="message-input">
-                    <button id="send-message">Send</button>
-                </div>
-            </div>        
         </div>
         <script type="text/javascript" src="socket.io/socket.io.js"></script>
         <script type="text/javascript" src="code.js"></script>
+        <script type="text/javascript">
+            function joinChat(){
+                window.location.href = 'forum.html';
+            }
+        </script>
     </body>
 </html>

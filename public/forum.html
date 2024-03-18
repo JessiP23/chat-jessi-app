@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Feedback</title>
+        <link rel="stylesheet" type="text/css" href="feedback.css">
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#feedback">Feedback</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="app">
+            <!--Images before and after-->
+            <div class="service-showcase">
+                <img src="" alt="Before">
+                <img src="" alt="After">
+            </div>
+            <div class="experience-section">
+                <h3>Experienced Staff</h3>
+                <p>Our team is dedicated to delivering professional cleaning services with years of experience.</p>
+            </div>
+            <div class="products-friendly">
+                <h3>Eco-Friendly Products</h3>
+                <p>We prioritizze the use of ecological and friendly cleaning products to ensure a friendly cleaning experience, indluding:</p>
+                <ul>
+                    <li>Biodegradable disinfectants</li>
+                    <li>Non-toxic cleaners</li>
+                </ul>
+            </div>
+            <div class="screen feedback-screen">
+                <div class="header">
+                    <div class="logo">Feddback System</div>
+                    <button id="go-back" onclick="goBack()">Go Back</button>
+                </div>
+                <div class="content">
+                    <h2>Provide feedback</h2>
+                    <div class="rating">
+                        <span onclick="rate(1)">★</span>
+                        <span onclick="rate(2)">★</span>
+                        <span onclick="rate(3)">★</span>
+                        <span onclick="rate(4)">★</span>
+                        <span onclick="rate(5)">★</span>
+                    </div>
+                    <textarea id="feedback-input" placeholder="Write your feedback here..."></textarea>
+                    <button id="submit-feedback" onclick="submitFeedback()"> Submit</button>
+                </div>
+            </div>
+            <form id="quote-form" action="submit_quote.php" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <button type="submit">Submit Quote</button>
+            </form>
+        </div>
+        <div id="map"></div>
+        <script>
+            function initMap(){
+                const map = new google.maps.Map(document.getElementById('map'), {
+                    center: { lat: 40.712776, lng: -74.005974},
+                    zoom: 10
+                });
+            }
+        </script>
+        <script type="text/javascript" src="socket.io/socket.io.js"></script>
+        <script type="text/javascript" src="feedback.js"></script>
+        <script type="text/javascript">
+            function goBack(){
+                window.history.back();
+            }
+        </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+    </body>
+</html>
