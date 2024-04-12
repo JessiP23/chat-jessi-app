@@ -1,32 +1,56 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Chat</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
-    </head>
-    <body>
-        <div>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paterson Cleaning Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#feedback">Feedback</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="app">
+        <section id="home">
             <h2>Welcome to Paterson Cleaning Services</h2>
             <p>Providing top-notch cleaning services with experienced staff, eco-friendly products, and exceptional results.</p>
-        </div>
-        <div class="app">
-            <div class="screen join-screen active">
-                <div class="form">
-                    <h2 class="welcome-message">Welcome</h2>
-                    <div class="form-input">
-                        <button type="submit" class= "joinButton" onclick="joinChat()">Join</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </section>
+        <section id="services">
+            <h2>Our services</h2>
+            <ul>
+                <li>Residential Cleaning</li>
+                <li>Commercial Cleaning</li>
+                <li>Deep cleaning</li>
+                <li>Carpet Cleaning</li>
+            </ul>
+        </section>
+        <section id="products">
+            <h2>Products Used</h2>
+            <p>We prioritize the use of ecological and friendly cleaning products to ensure a friendly cleaning experience, including:</p>
+            <ul>
+                <li>Biodegradable disinfectants</li>
+                <li>Non-toxic cleaners</li>
+            </ul>
+        </section>
+        <section id="feedback">
+            <h2>Feedback</h2>
+            <p>Please provide your feedback into this section</p>
+            <button type="submit" class="joinButton" onclick="joinChat()">Join</button>
+        </section>
         <script type="text/javascript" src="socket.io/socket.io.js"></script>
         <script type="text/javascript" src="code.js"></script>
         <script type="text/javascript">
-            function joinChat(){
+            function joinChat() {
                 window.location.href = 'forum.html';
             }
         </script>
-    </body>
+    </div>
+</body>
 </html>

@@ -6,26 +6,26 @@ document.addEventListener('DOMContentLoaded', function() {
     let selectedRating = 0;
 
     ratingStars.forEach((star, index) => {
-        star.addEventListener('click', function(){
+        star.addEventListener('click', function() {
             selectedRating = index + 1;
             highlightStars();
         });
     });
 
-    function highlightStars(){
+    function highlightStars() {
         ratingStars.forEach((star, index) => {
-            if (index < selectedRating){
+            if (index < selectedRating) {
                 star.classList.add('selected');
-            } else{
+            } else {
                 star.classList.remove('selected');
             }
         });
     }
 
-    submitButton.addEventListener('click', function(){
+    submitButton.addEventListener('click', function() {
         const feedbackText = feedbackInput.value.trim();
 
-        if(selectedRating === 0 || feedbackText.length === 0){
+        if (selectedRating === 0 || feedbackText.length === 0) {
             alert('Please provide both a rating and feedback text.');
             return;
         }
@@ -35,7 +35,11 @@ document.addEventListener('DOMContentLoaded', function() {
             text: feedbackText,
         };
 
-        alert('Feedback submitted sucessfully!');
+        // Your code to submit the feedback, e.g., send it to the server
+        // You can replace the alert below with your desired feedback submission logic
+        alert('Feedback submitted successfully!');
+        
+        // Clear input fields and reset selected rating
         feedbackInput.value = '';
         selectedRating = 0;
         highlightStars();
